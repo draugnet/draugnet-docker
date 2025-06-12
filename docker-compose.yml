@@ -1,0 +1,37 @@
+services:
+    backend:
+        build: 
+            context: draugnet
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        volumes:
+            - "./config/draugnet:/app/config:ro"
+        depends_on:
+            - redis
+
+    ui:
+        build: 
+            context: draugnetUI
+            dockerfile: Dockerfile
+        ports:
+          - "8080:80"
+        volumes:
+        - "./config/draugnetUI:/usr/share/nginx/html/config:ro"
+        depends_on:
+            - redis
+            - backend
+
+    redis:
+        image: valkey/valkey:7.2
+        environment:
+            VALKEY_EXTRA_FLAGS: "--save 60 1 --loglevel warning"
+        volumes:
+            - "./run:/data"
+        healthcheck:
+            test: "valkey-cli ping | grep -q PONG || exit 1"
+            interval: 2s
+            timeout: 1s
+            retries: 3
+            start_period: 5s
+            start_interval: 5s

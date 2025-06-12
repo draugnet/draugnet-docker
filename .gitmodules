@@ -1,0 +1,6 @@
+[submodule "draugnet"]
+	path = draugnet
+	url = git@github.com:draugnet/draugnet.git
+[submodule "draugnetUI"]
+	path = draugnetUI
+	url = git@github.com:draugnet/draugnetUI.git
