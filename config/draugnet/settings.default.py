@@ -1,7 +1,7 @@
 # misp config - make sure that you use credentials of a non privileged user meant to handle all requests coming from abracadabra
 misp_config = {
-    'url': 'https://training3.misp-community.org/',
-    'key': 'zBVuZKXDtZGyKQsaPzP5n9nezaOJQ4BRc2vJ4wO3',
+    'url': 'https://your-misp-instance/',
+    'key': 'YOUR_MISP_API_KEY',
     'verifycert': True
 }
 
